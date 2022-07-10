@@ -5,12 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/server"
+    "dev": "nodemon src/server",
+    "up": "pnpx sequelize-cli db:migrate",
+    "down": "sequelize db:migrate:undo:all"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "express": "^4.18.1",
     "pg": "^8.7.3",
     "sequelize": "^6.21.2",
