@@ -26,7 +26,7 @@ class UserController {
 
   async update(req, res) {
     const user = await User.findByPk(req.userId);
-    const { name, email, password, provider } = req.body;
+    const { name, email, oldPassword, password, provider } = req.body;
 
     if (!user) {
       return res.status(401).json({
@@ -34,12 +34,23 @@ class UserController {
       });
     }
 
-    user.update({
-      name,
-      email,
-      password,
-      provider,
-    });
+    if (email && email !== user.email) {
+      const userExists = await User.findOne({
+        where: {
+          email,
+        },
+      });
+
+      if (userExists) {
+        return res.status(400).json({ error: "Usuário já cadastrado" });
+      }
+    }
+
+    if (oldPassword && !(await user.checkPassword(oldPassword))) {
+      return res.status(401).json({ error: "Senha não confere" });
+    }
+
+    user.update(req.body);
 
     return res.json({
       name: user.name,
@@ -47,7 +58,7 @@ class UserController {
       provider: user.provider,
     });
   }
-    
+
   async delete(req, res) {
     const user = await User.findByPk(req.userId);
 
@@ -60,7 +71,7 @@ class UserController {
     user.destroy();
 
     return res.json({
-      message: 'Usuário deletado'
+      message: "Usuário deletado",
     });
   }
 }
