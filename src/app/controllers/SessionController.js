@@ -1,5 +1,6 @@
 import Database from "../../database";
 import jwt from "jsonwebtoken";
+import authConfig from "../../config/auth";
 
 const { User } = Database.connection.models;
 
@@ -31,8 +32,8 @@ class SessionController {
         id,
         name,
         email,
-        token: jwt.sign({ id }, "d14003a82cd66d15cc4a2404a0fb9a8d", {
-          expiresIn: "1h",
+        token: jwt.sign({ id }, authConfig.secret, {
+          expiresIn: authConfig.expiresIn,
         }),
       },
     });
