@@ -20,7 +20,7 @@ class AppointmentController {
 
     const isCollaborator = await User.findOne({
       where: {
-        collaborator_id,
+        id: collaborator_id,
         provider: true,
       },
     });
