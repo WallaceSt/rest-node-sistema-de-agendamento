@@ -5,6 +5,7 @@ import multer from 'multer';
 import multerConfig from './config/multer';
 import SessionController from './app/controllers/SessionController';
 import FileController from './app/controllers/FileController';
+import CollaboratorController from './app/controllers/CollaboratorController';
 import authMiddleware from './app/middlewares/auth';
 
 const routes = new Router();
@@ -17,6 +18,8 @@ routes.post('/sessions', SessionController.store);
 routes.use(authMiddleware);
 routes.put('/users', UserController.update);
 routes.delete('/users', UserController.delete);
+
+routes.get('/collaborator', CollaboratorController.index);
 
 // Uploads de arquivos
 routes.post('/files', upload.single('file'), FileController.store);
