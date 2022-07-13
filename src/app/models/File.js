@@ -1,7 +1,4 @@
-import { Sequelize, DataTypes, Model } from "sequelize";
-import { username } from "../../config/database";
-
-const bcrypt = require("bcrypt");
+import { DataTypes, Model } from "sequelize";
 
 class File extends Model {
     static init(sequelize) {

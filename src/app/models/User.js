@@ -1,6 +1,4 @@
-import { Sequelize, DataTypes, Model } from "sequelize";
-import { username } from "../../config/database";
-
+import { DataTypes, Model } from "sequelize";
 const bcrypt = require("bcrypt");
 
 class User extends Model {
@@ -25,7 +23,7 @@ class User extends Model {
     }
 
     static associate(models) {
-        this.belongsTo(models.File, { foreignKey: 'photo_id', as: 'photo' })
+        this.belongsTo(models.File, { foreignKey: 'photo_id', as: 'photo' });
     }
 
     checkPassword(password) {
