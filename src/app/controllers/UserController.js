@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 import Database from "../../database";
 
-const { User } = Database.connection.models;
+const { User } = Database.models;
 
 class UserController {
   async store(req, res) {

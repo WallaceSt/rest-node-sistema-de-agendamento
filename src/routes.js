@@ -8,6 +8,7 @@ import FileController from './app/controllers/FileController';
 import CollaboratorController from './app/controllers/CollaboratorController';
 import AppointmentController from './app/controllers/AppointmentController';
 import authMiddleware from './app/middlewares/auth';
+import ScheduleController from './app/controllers/ScheduleController';
 
 const routes = new Router();
 const upload = multer(multerConfig);
@@ -23,6 +24,9 @@ routes.delete('/users', UserController.delete);
 // Rota de agendamento
 routes.get('/appointments', AppointmentController.index);
 routes.post('/appointments', AppointmentController.store);
+
+// Agenda dos colaboradores
+routes.get('/schedule', ScheduleController.index);
 
 // Lista de colaboradores
 routes.get('/collaborator', CollaboratorController.index);

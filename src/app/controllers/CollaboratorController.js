@@ -1,6 +1,6 @@
 import Database from "../../database";
 
-const { User, File } = Database.connection.models;
+const { User, File } = Database.models;
 
 class CollaboratorController {
   async index(req, res) {

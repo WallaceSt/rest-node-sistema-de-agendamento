@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import authConfig from "../../config/auth";
 import * as Yup from 'yup';
 
-const { User } = Database.connection.models;
+const { User } = Database.models;
 
 class SessionController {
   async store(req, res) {
