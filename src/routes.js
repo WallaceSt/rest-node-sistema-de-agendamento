@@ -21,6 +21,7 @@ routes.put('/users', UserController.update);
 routes.delete('/users', UserController.delete);
 
 // Rota de agendamento
+routes.get('/appointments', AppointmentController.index);
 routes.post('/appointments', AppointmentController.store);
 
 // Lista de colaboradores
